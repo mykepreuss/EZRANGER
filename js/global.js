@@ -15,12 +15,30 @@ $(function() {
 		$('.hp:input').each(function() {
 			hp += parseInt($(this).val());
 		});
+ 		
+ 		//THIS IS WHERE I'M HAVING TROUBLE
+ 		$('.task').each(function(){
+ 			abp2 = parseInt($(this).find('.abp:input').val());
  			
-		var bufferRoot = Math.pow((hp - abp),2);
-		var buffer = Math.sqrt(bufferRoot);
-		var estimate = (buffer + abp).toFixed(1);
+ 			console.log(abp2);
+
+ 			hp2 = parseInt($(this).find('.hp:input').val());
+
+ 			console.log(hp2);
+
+ 			task =  hp2 - abp2;
+			
+			// How do I get the values of task transferred out of this each function so I can use the numbers in the next part of the equation?
+			
+ 			console.log(task);
+ 			
+ 		})
+ 		 		
+		var bufferPower = Math.pow((hp - abp),2);
+		var bufferRoot = Math.sqrt(bufferPower);
+		var estimate = (bufferRoot + abp).toFixed(1);
 		var time = $('#time').val();
-		$('#estimate').html(estimate+' '+time);
+		$('#estimate').hide().html(estimate+' '+time).fadeIn();
 	};
 
 		
