@@ -5,28 +5,24 @@
 $(function() {
 	function estimate(){
 		//Add up all the ABP's
-		abp = 0;	
+		var abp = 0;	
 		$('.abp:input').each(function() {
 			abp += parseInt($(this).val());
 		});
 		
 		//Add up all the HP's	
-		hp = 0;	
+		var hp = 0;	
 		$('.hp:input').each(function() {
 			hp += parseInt($(this).val());
 		});
  		
+ 		
  		//THIS IS WHERE I'M HAVING TROUBLE
  		$('.task').each(function(){
- 			abp2 = parseInt($(this).find('.abp:input').val());
- 			
- 			console.log(abp2);
+ 			var abp2 = parseInt($(this).find('.abp:input').val()); 			
+ 			var hp2 = parseInt($(this).find('.hp:input').val());
 
- 			hp2 = parseInt($(this).find('.hp:input').val());
-
- 			console.log(hp2);
-
- 			task =  hp2 - abp2;
+ 			var task =  hp2 - abp2;
 			
 			// How do I get the values of task transferred out of this each function so I can use the numbers in the next part of the equation?
 			
