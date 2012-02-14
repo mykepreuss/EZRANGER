@@ -4,23 +4,17 @@
 
 $(function() {
 	
-	//task prototype
+	//task prototype (not currently using)
 	function task(abp, hp){
 		this.abp = abp;
 		this.hp = hp;
 	};
 	
+	// not currently using
 	var singleTask = {
 		abp: parseInt($(this).find('.abp:input').val()),
 		hp: parseInt($(this).find('.hp:input').val())
 	}
-
-	function getDifferences(x, y){
-		thisTask =  y - x;
-		return thisTask;
-	};
- 	
- 	console.log(getDifferences(123, 145));
 	
 	function estimate(){
 		//Add up all the ABP's
