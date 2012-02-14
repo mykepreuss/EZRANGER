@@ -3,32 +3,49 @@
 */
 
 $(function() {
+	
+	//task prototype
+	function task(abp, hp){
+		this.abp = abp;
+		this.hp = hp;
+	};
+	
+	var singleTask = {
+		abp: parseInt($(this).find('.abp:input').val()),
+		hp: parseInt($(this).find('.hp:input').val())
+	}
+
+	function getDifferences(x, y){
+		thisTask =  y - x;
+		return thisTask;
+	};
+ 	
+ 	console.log(getDifferences(123, 145));
+	
 	function estimate(){
 		//Add up all the ABP's
 		var abp = 0;	
 		$('.abp:input').each(function() {
 			abp += parseInt($(this).val());
 		});
-		
+
 		//Add up all the HP's	
 		var hp = 0;	
 		$('.hp:input').each(function() {
 			hp += parseInt($(this).val());
 		});
- 		
- 		
- 		//THIS IS WHERE I'M HAVING TROUBLE
+ 		 		
+		var tasks = [];
  		$('.task').each(function(){
  			var abp2 = parseInt($(this).find('.abp:input').val()); 			
  			var hp2 = parseInt($(this).find('.hp:input').val());
 
  			var task =  hp2 - abp2;
-			
-			// How do I get the values of task transferred out of this each function so I can use the numbers in the next part of the equation?
-			
- 			console.log(task);
+			tasks.push(task);
  			
  		})
+
+ 		console.log(tasks);
  		 		
 		var bufferPower = Math.pow((hp - abp),2);
 		var bufferRoot = Math.sqrt(bufferPower);
@@ -36,7 +53,6 @@ $(function() {
 		var time = $('#time').val();
 		$('#estimate').hide().html(estimate+' '+time).fadeIn();
 	};
-
 		
 	$('#calculate').click(function(){
 		estimate();
