@@ -23,10 +23,12 @@ $(function() {
  			var abp = parseInt($(this).find('.abp:input').val());
  			var hp = parseInt($(this).find('.hp:input').val());
  			var task =  hp - abp;
+ 			
  			//Fill the tasks[] variable with the differences of each value
 			tasks.push(task);
  		});
-
+	
+		// Total task values
  		console.log("tasks = " + tasks);
 		
 		// Assign the total variable as zero
@@ -38,13 +40,13 @@ $(function() {
 		}
 			
 		// Math time!
-		var bufferPower = Math.pow((total),2);
+		var bufferPower = Math.pow(total,2);
 		var bufferRoot = Math.sqrt(bufferPower);
-
+		
+		// Let's check out some of those values
  		console.log("total = " + total);
  		console.log("abp = " + abp);
  		console.log("hp = " + hp);
-
  		console.log("bufferPower = " + bufferPower);
  		console.log("bufferRoot = " + bufferRoot);
 
