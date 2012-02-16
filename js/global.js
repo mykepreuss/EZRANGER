@@ -36,22 +36,20 @@ $(function() {
 		
 		// Add up all of the task values
 		for (var i = 0; i< tasks.length; i++) {
-			total += tasks[i];
+			total += Math.pow(tasks[i],2);
 		}
 			
-		// Math time!
-		var bufferPower = Math.pow(total,2);
-		var bufferRoot = Math.sqrt(bufferPower);
-		
+		// Math time!		
+		var buffer = Math.sqrt(total);
+		var estimate = (buffer + abp).toFixed(1);
+		var time = $('#time').val();
+
 		// Let's check out some of those values
  		console.log("total = " + total);
  		console.log("abp = " + abp);
  		console.log("hp = " + hp);
- 		console.log("bufferPower = " + bufferPower);
- 		console.log("bufferRoot = " + bufferRoot);
-
-		var estimate = (bufferRoot + abp).toFixed(1);
-		var time = $('#time').val();
+ 		console.log("buffer = " + buffer);
+ 		console.log("estimate = " + estimate);
 
 		$('#estimate').hide().html(estimate+' '+time).fadeIn();
 	};
