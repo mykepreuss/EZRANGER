@@ -45,20 +45,26 @@ $(function() {
 	$('#addTaskBtn').click(function(){
 		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
 		$(newTask).hide().appendTo('#form').fadeIn();
+		$('#estimate').hide();
 		return false;
 	});
-
+	
 	// Remove Task Button
 	$('#form').on('click', '.removeTask a', function(){
-		$(this).parent().parent().remove();
+		// Check to see there at least 2 tasks
+		if ($('.task').length > 2){
+			$(this).parent().parent().remove();
+		} else {
+			$('#estimate').hide().html('You must have at least 2 tasks').fadeIn();
+		}
 		return false;
 	});
 
 	// Enter Key Blur
-	$(".task h3").keypress(function(event){
+	$(".task h3, #projectTitle").keypress(function(event){
   		if (event.which == 13){
      		$(this).blur();
-     		event.preventDefault();
+     		return false;
    		}
 	});
 
