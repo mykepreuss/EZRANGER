@@ -13,16 +13,21 @@ function estimate(){
 	var tasks = [];
 
 	$('.task').each(function(){
-		var abp = parseInt($(this).find('.abp:input').val());
-		var hp = parseInt($(this).find('.hp:input').val());
+		var abp = parseInt($(this).find('.abp:input').val()) || 0;
+		var hp = parseInt($(this).find('.hp:input').val()) || 0;
 		var task =  hp - abp;		
 		
 		// Check to see if the ABP is lower than HP
 		if(hp < abp ){
 			tasks.push('tooHigh');
-		}else{
+			$(this).addClass('error');
+		// Check to see if either of the ABP or HP is emtpy
+		} else if (abp === 0 || hp === 0){
+			$(this).addClass('error');
+		} else {
 			// Fill the tasks[] variable with the differences of each value
 			tasks.push(task);
+			$(this).removeClass('error');
 		}
 	});
 	
@@ -39,7 +44,6 @@ function estimate(){
 	var estimate = (buffer + abp).toFixed(1);
 	var time = $('#time').val();
 
-	console.log(tasks);
 
 	if ($.inArray('tooHigh', tasks) > -1){
 		$('#estimate').hide().html('Make sure all ABP values are lower than HP values').fadeIn();	
