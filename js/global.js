@@ -54,74 +54,64 @@ function estimate(){
 	};
 };
 
-function saveTasksToCookie()
-{
-   var data = {};
-   data.projectTitle = $("#projectTitle").text();
-   data.time = $("#time").val();
-   data.tasks = [];
+function saveTasksToCookie(){
+	var data = {};
+	data.projectTitle = $("#projectTitle").text();
+	data.time = $("#time").val();
+	data.tasks = [];
 
-   $('.task').each(function()
-   {
-       var item = {};
-       item.title = $(this).find('h3').text();
-       item.abp = $(this).find('.abp:input').val();
-       item.hp = $(this).find('.hp:input').val();
+	$('.task').each(function(){
+		var item = {};
+		item.title = $(this).find('h3').text();
+		item.abp = $(this).find('.abp:input').val();
+		item.hp = $(this).find('.hp:input').val();
 
-       data.tasks.push(item);
-   });
+		data.tasks.push(item);
+	});
 
-   // Now save list to cookie
-   $.cookie("estimatorData", JSON.stringify(data));
+	// Now save list to cookie
+	$.cookie("estimatorData", JSON.stringify(data));
+};
 
-}
-
-function loadTasksFromCookie()
-{
-   // Load from cookie
-   var data = JSON.parse($.cookie("estimatorData"))
+function loadTasksFromCookie(){
+	// Load from cookie
+	var data = JSON.parse($.cookie("estimatorData"))
 
 
-   // Create tasks from data
-   if (data.projectTitle)
-   {
-       $("#projectTitle").text(data.projectTitle);
-   }
+	// Create tasks from data
+	if (data.projectTitle){
+		$("#projectTitle").text(data.projectTitle);
+	}
 
-   if (data.time)
-   {
-       $("#time").val(data.time);
-   }
+	if (data.time){
+		$("#time").val(data.time);
+	}
 
 
-   if (data.tasks)
-   {
-       var taskClass = 3;
-       var len = data.tasks.length;
-       for (var i=0; i < len; ++i)
-       {
-           // Add each task
-           var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
-           $(newTask).hide().appendTo('#form').fadeIn();
-           $('#estimate').hide();
-       }
-   }
-
+	if (data.tasks){
+		var taskClass = 3;
+		var len = data.tasks.length;
+		for (var i=0; i < len; ++i){
+			// Add each task
+			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
+			$(newTask).hide().appendTo('#form').fadeIn();
+			$('#estimate').hide();
+		}
+	}
    estimate();
-}
+};
 
 $(function() {
 	// If no cookie create 2 tasks
 	if($.cookie("estimatorData") === null){
 		for(i=0; i < 2; ++i){
 			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
-		$(newTask).hide().appendTo('#form').fadeIn();
-
+			$(newTask).hide().appendTo('#form').fadeIn();
 		}
 	// Else load cookie
 	} else {
 		loadTasksFromCookie();
-	}
+	};
 	
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
