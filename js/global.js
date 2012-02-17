@@ -15,12 +15,17 @@ function estimate(){
 	$('.task').each(function(){
 		var abp = parseInt($(this).find('.abp:input').val());
 		var hp = parseInt($(this).find('.hp:input').val());
-		var task =  hp - abp;
-
-		// Fill the tasks[] variable with the differences of each value
-		tasks.push(task);
+		var task =  hp - abp;		
+		
+		// Check to see if the ABP is lower than HP
+		if(hp < abp ){
+			tasks.push('tooHigh');
+		}else{
+			// Fill the tasks[] variable with the differences of each value
+			tasks.push(task);
+		}
 	});
-
+	
 	// Assign the total variable as zero
 	var total = 0;
 
@@ -33,7 +38,12 @@ function estimate(){
 	var buffer = Math.sqrt(total);
 	var estimate = (buffer + abp).toFixed(1);
 	var time = $('#time').val();
-	if (estimate === 'NaN'){
+
+	console.log(tasks);
+
+	if ($.inArray('tooHigh', tasks) > -1){
+		$('#estimate').hide().html('Make sure all ABP values are lower than HP values').fadeIn();	
+	} else if (estimate === 'NaN'){
 		$('#estimate').hide().html('Make sure to enter numbers for all fields').fadeIn();
 	} else {
 		$('#estimate').hide().html(estimate+' '+time).fadeIn();
