@@ -11,18 +11,11 @@ function estimate(){
 
 	// Make an array to hold the difference in our estimates
 	var tasks = [];
-	
-	// Make an array to hold the Object values to make cookie
-	var cookies = [];
-	
+		
 	$('.task').each(function(){
 		var abp = parseInt($(this).find('.abp:input').val()) || 0;
 		var hp = parseInt($(this).find('.hp:input').val()) || 0;
 		var task =  hp - abp;		
-		var taskObject = {
-			abp: abp,
-			hp: hp
-		}
 		
 		// Check to see if the ABP is lower than HP
 		if(hp < abp ){
@@ -34,14 +27,9 @@ function estimate(){
 		} else {
 			// Fill the tasks[] variable with the differences of each value
 			tasks.push(task);
-			cookies.push(taskObject);
 			$(this).removeClass('error');
 		}		
 	});
-	
-	// Serialize the array
-	var cookieArray = $(cookies).serializeArray();
-	console.log(cookies);
 	
 	// Assign the total variable as zero
 	var total = 0;
@@ -66,11 +54,78 @@ function estimate(){
 	};
 };
 
+function saveTasksToCookie()
+{
+   var data = {};
+   data.projectTitle = $("#projectTitle").text();
+   data.time = $("#time").val();
+   data.tasks = [];
+
+   $('.task').each(function()
+   {
+       var item = {};
+       item.title = $(this).find('h3').text();
+       item.abp = $(this).find('.abp:input').val();
+       item.hp = $(this).find('.hp:input').val();
+
+       data.tasks.push(item);
+   });
+
+   // Now save list to cookie
+   $.cookie("estimatorData", JSON.stringify(data));
+
+}
+
+function loadTasksFromCookie()
+{
+   // Load from cookie
+   var data = JSON.parse($.cookie("estimatorData"))
+
+
+   // Create tasks from data
+   if (data.projectTitle)
+   {
+       $("#projectTitle").text(data.projectTitle);
+   }
+
+   if (data.time)
+   {
+       $("#time").val(data.time);
+   }
+
+
+   if (data.tasks)
+   {
+       var taskClass = 3;
+       var len = data.tasks.length;
+       for (var i=0; i < len; ++i)
+       {
+           // Add each task
+           var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
+           $(newTask).hide().appendTo('#form').fadeIn();
+           $('#estimate').hide();
+       }
+   }
+
+   estimate();
+}
+
 $(function() {
-	var taskClass = 3;
+	// If no cookie create 2 tasks
+	if($.cookie("estimatorData") === null){
+		for(i=0; i < 2; ++i){
+			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
+		$(newTask).hide().appendTo('#form').fadeIn();
+
+		}
+	// Else load cookie
+	} else {
+		loadTasksFromCookie();
+	}
+	
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
-		var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">Task Title</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
+		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label name="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label name="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><a href="#">Remove Task</a></div></div>';
 		$(newTask).hide().appendTo('#form').fadeIn();
 		$('#estimate').hide();
 		return false;
@@ -81,6 +136,7 @@ $(function() {
 		// Check to see there at least 2 tasks
 		if ($('.task').length > 2){
 			$(this).parent().parent().remove();
+			saveTasksToCookie();
 		} else {
 			$('#estimate').hide().html('You must have at least 2 tasks').fadeIn();
 		}
@@ -98,11 +154,13 @@ $(function() {
 	// Update Time Value
 	$('#time').change(function(){
 		estimate();
+		saveTasksToCookie();
 	})
 
 	// Perform Calculation
 	$('#calculateBtn').click(function(){
 		estimate();
+		saveTasksToCookie();
 		return false;
 	});	
 });
