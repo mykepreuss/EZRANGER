@@ -50,7 +50,7 @@ function estimate(){
 	} else if (estimate === 'NaN'){
 		$('#estimate').hide().html('Make sure to enter numbers for all fields').fadeIn();
 	} else {
-		$('#estimate').hide().html(estimate+' '+time).fadeIn();
+		$('#estimate').hide().html('<div class="estimateTotal">'+estimate+'</div> <div class="time">'+time+'</div>').fadeIn();
 	};
 };
 
@@ -143,7 +143,8 @@ $(function() {
 
 	// Update Time Value
 	$('#time').change(function(){
-		estimate();
+		var time = $('#time').val();
+		$('.time').hide().html(time).fadeIn();
 		saveTasksToCookie();
 	})
 
