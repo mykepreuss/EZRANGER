@@ -93,7 +93,7 @@ function loadTasksFromCookie(){
 		var len = data.tasks.length;
 		for (var i=0; i < len; ++i){
 			// Add each task
-			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 			$('#estimate').hide();
 		}
@@ -105,7 +105,7 @@ $(function() {
 	// If no cookie create 2 tasks
 	if($.cookie("estimatorData") === null){
 		for(i=0; i < 2; ++i){
-			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 		}
 	// Else load cookie
@@ -115,7 +115,7 @@ $(function() {
 	
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
-		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">ABP: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">HP: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
 		$(newTask).hide().appendTo('#form').fadeIn();
 		$('#estimate').hide();
 		return false;

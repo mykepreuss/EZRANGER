@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/libs/modernizr-2.5.2.min.js"></script>
 </head>
@@ -16,14 +16,9 @@
 <body>
 
 	<header>
-		<div class="navbar navbar-fixed-top">
+		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
 					<a class="brand" href="#">Range Estimator</a>
 				</div>
 			</div>
@@ -32,12 +27,12 @@
 
 	<div id="main" role="main">
 
-		<h2 id="projectTitle" contenteditable="true">Project Title</h2>
+		<h2 id="projectTitle" class="squeeze" contenteditable="true">Project Title</h2>
 		<div id="form">
 			<!-- Loaded in the JS -->
 		</div>
 
-		<div id="lower-content">
+		<div id="lower-content" class="squeeze">
 			<div id="addTask">
 				<button id="addTaskBtn" class="btn btn-small"><i class="icon-plus-sign"></i> Add Task</button>
 			</div>
@@ -55,9 +50,9 @@
 			<div id="calculate">
 				<button id="calculateBtn" class="btn btn-large btn-primary">Calculate</button>
 			</div>
+	
+			<div id="estimate"></div>
 		</div>
-		
-		<div id="estimate"></div>
 	</div>
 
 	<footer>
@@ -65,7 +60,7 @@
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/libs/jquery.cookie.js"></script>
 	<script src="js/global.js"></script>
 </body>

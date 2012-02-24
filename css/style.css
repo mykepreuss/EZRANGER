@@ -3,13 +3,38 @@
    ========================================================================== */
 
 #main {
-	width: 90%;
+	width: 320pt;
 	margin: 52px auto;
+}
+
+.navbar .brand {
+	float: left;
+	display: block;
+	padding: 8px 20px 12px;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 1;
+	color: black;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+}
+
+.navbar-inner {
+	webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+#projectTitle {
+	padding-bottom: 12px
 }
 
 .task {
 	position: relative;
 	padding: 8px 35px 8px 14px;
+}
+
+.task h3 {
+	margin-bottom: 8px;
 }
 
 .removeTask .btn {
@@ -20,7 +45,7 @@
 }
 
 #lower-content {
-	padding: 14px 35px 0 14px;
+	padding-top: 10px;
 }
 
 #estimate {
@@ -32,29 +57,14 @@
 	float: left;
 }
 
-.navbar .brand {
-	float: left;
-	display: block;
-	padding: 8px 20px 12px;
-	margin-left: -20px;
-	font-size: 20px;
-	font-weight: 200;
-	line-height: 1;
-	color: white;
-}
-.navbar-fixed-top .brand {
-	padding-right: 0;
-	padding-left: 0;
-	margin-left: 20px;
-	float: right;
-	font-weight: bold;
-	color: black;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
-	-webkit-transition: all .2s linear;
-	-moz-transition: all .2s linear;
-	transition: all .2s linear;
+.control-group {
+	margin-top: 12px;
 }
 
-.control-group {
-	margin: 12px 0 0;
+#calculate {
+	margin: 10px 0 18px;
+}
+
+.squeeze {
+	padding: 0 35px 0 14px;
 }
