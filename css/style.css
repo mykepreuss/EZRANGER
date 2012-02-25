@@ -1,26 +1,68 @@
 /* ==|== primary styles =====================================================
    Author: @mykepreuss
    ========================================================================== */
+.container {
+	width: 280px;
+}
 
 #main {
 	width: 280px;
-	margin: 52px auto;
+	margin: 24px auto;
+}
+
+.navbar {
+	margin-bottom: 12px;
+}
+
+.navbar-inner {
+	padding: 0;
+	webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
 }
 
 .navbar .brand {
 	float: left;
 	display: block;
-	padding: 8px 20px 12px;
+	padding: 8px 32px 12px;
 	font-size: 20px;
 	font-weight: bold;
-	color: black;
+	color: #000;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
 }
 
-.navbar-inner {
-	webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
+#slider-container {
+	width: 280px;
+	margin: 0 auto;
+}
+
+#about {
+	margin: 0 0 14px 13px;
+}
+
+#about h2 {
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+#about h2, #about p {
+	padding: 12px 12px 6px;
+	margin: 0;
+}
+
+#about ol {
+	padding: 0 12px 6px 0;
+	float: left;
+	list-style-position: inside;
+}
+
+#about .dropdown-menu a {
+	clear: none;
+	margin: 0;
+	padding: 0 0 6px 0;
+	display: inline;
+	color: #3A87AD;
 }
 
 #projectTitle {
@@ -46,14 +88,14 @@
 
 .task input {
 	display: block;
-	width: 130px;
+	width: 136px;
 }
 
 #lower-content {
 	padding-top: 8px;
 }
 
-#addTask {
+#addTaskBtn {
 	margin-bottom: 18px;
 }
 
@@ -66,10 +108,10 @@
 }
 
 select#time {
-	width: 140px;
+	width: 146px;
 }
 
-#calculate {
+#calculateBtn {
 	margin: 10px 0 18px;
 }
 

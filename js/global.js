@@ -2,6 +2,16 @@
 	@mykepreuss
 */
 
+$("input[type=text], textarea").mouseover(zoomDisable).mousedown(zoomEnable);
+function zoomDisable(){
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="user-scalable=0" />');
+}
+function zoomEnable(){
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="user-scalable=1" />');
+}
+
 function estimate(){
 	// Add up all the ABP's
 	var abp = 0;
@@ -89,11 +99,10 @@ function loadTasksFromCookie(){
 
 
 	if (data.tasks){
-		var taskClass = 3;
 		var len = data.tasks.length;
 		for (var i=0; i < len; ++i){
 			// Add each task
-			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<article class="task"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 			$('#estimate').hide();
 		}
@@ -101,11 +110,15 @@ function loadTasksFromCookie(){
    estimate();
 };
 
+function goToByScroll(id){
+	$('html,body').animate({scrollTop: $('#'+id).offset().top},'slow');
+}
+
 $(function() {
 	// If no cookie create 2 tasks
 	if($.cookie("estimatorData") === null){
 		for(i=0; i < 2; ++i){
-			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<article class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 		}
 	// Else load cookie
@@ -115,7 +128,7 @@ $(function() {
 
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
-		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
+		var newTask = '<article class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
 		$(newTask).hide().appendTo('#form').fadeIn();
 		$('#estimate').hide();
 		return false;
@@ -179,6 +192,10 @@ $(function() {
 	$('#calculateBtn').click(function(){
 		estimate();
 		saveTasksToCookie();
+		goToByScroll('estimate');
 		return false;
 	});
+
+	$('.dropdown-toggle').dropdown()
+
 });

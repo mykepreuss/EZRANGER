@@ -1,0 +1,15 @@
+CACHE MANIFEST
+      
+CACHE:
+/css/style.css
+/css/bootstrap.min.css
+/js/libs/jquery-1.7.1.min.js
+/js/libs/jquery.cookie.js
+/js/libs/modernizr-2.5.2.min.js
+/js/libs/bootstrap.min.js
+/js/global.js
+/img/glyphicons-halflings.png
+index.html
+
+NETWORK:
+*

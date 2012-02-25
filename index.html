@@ -1,41 +1,63 @@
 <!doctype html>
 <html>
+<!--<html lang="en" manifest="/estimator.appcache">-->
 <head>
 	<meta charset="utf-8">
 	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-
-	<title>Range Estimator</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EZRANGE - Range Estimator</title>
+	<meta name="description" content="EZRANGER is an app that helps you create better estimates using a formula that takes into account any interuptions you may encounter during the course of a project.">
+	<meta name="author" content="@mykepreuss">
+	<meta name="apple-mobile-web-app-capable" content="yes" />  
+	<meta name="viewport" content="width=280, initial-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/libs/modernizr-2.5.2.min.js"></script>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(
+hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 
 <body>
-
 	<header>
-		<div class="navbar">
+		<nav class="navbar">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="#">Range Estimator</a>
+					<h1 class="brand" href="#">EZRANGER</h1>
+				</div>
+			</div>
+		</nav>
+		<div id="slider-container">
+			<div id="about">
+				<div class="btn-group">
+					<a href="#" class="btn dropdown-toggle" data-toggle="dropdown">ABOUT <span class="caret"></span></a>
+					<div class="dropdown-menu">
+						<h2>EZRANGER is an app that helps you create better estimates using a formula that takes into account any interuptions you may encounter during the course of a project.</h2>
+						<p><strong>INSTRUCTIONS</strong></p>
+						<ol>
+							<li>Enter your Project Name.</li>
+							<li>Break your Project into Tasks.</li>
+							<li>Name each Task.</li>
+							<li>Enter an <em>Aggressive But Possible</em> Estimate. This is how fast you think you can get each task done without any delays, interruptions or issues.</li>
+							<li>Enter a <em>Highly Probably</em> Estimate. This should be a number you're 100% comfortable with, taking into consideration any delays or complexities.</li>
+							<li>Choose if your estimates are in <em>Days</em> or <em>Hours</em></li>
+							<li>Press <em>Calculate</em></li>
+						</ol>
+						<p>EZRANGER is a project by <a href="http://waytoogood.ca">Myke Preuss</a> based of an formula seen on <a href="http://spin.atomicobject.com/2009/01/14/making-better-estimates-range-estimates/">Atomic Spin</a> pointed out by <a href="https://twitter.com/#!/benfeist">Ben Feist</a>. Special thanks to <a href="https://twitter.com/#!/wkral">William Kral</a> and <a href="http://pinkunderwear.ca/">Raman Gill</a>.</p>
+					</div>
 				</div>
 			</div>
 		</div>
     </header>
 
 	<div id="main" role="main">
-
-		<h2 id="projectTitle" contenteditable="true">Project Title</h2>
+		<header>
+			<h2 id="projectTitle" contenteditable="true">Project Title</h2>
+		</header>
+		
 		<div id="form">
 			<!-- Loaded from the JS -->
 		</div>
-
-		<div id="lower-content" class="squeeze">
-			<div id="addTask">
-				<button id="addTaskBtn" class="btn btn-small"><i class="icon-plus-sign"></i> Add Task</button>
-			</div>
+		<footer id="lower-content" class="squeeze">
+			<button id="addTaskBtn" class="btn btn-small"><i class="icon-plus-sign"></i> Add Task</button>
 
 			<div class="control-group">
 				<label class="control-label" for="time">Choose Days or Hours</label>
@@ -47,20 +69,15 @@
 				</div>
 			</div>
 
-			<div id="calculate">
-				<button id="calculateBtn" class="btn btn-large btn-primary">Calculate</button>
-			</div>
+			<button id="calculateBtn" class="btn btn-large btn-primary">Calculate</button>
 
 			<div id="estimate"></div>
-		</div>
+		</footer>
 	</div>
-
-	<footer>
-	</footer>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="js/libs/jquery.cookie.js"></script>
 	<script src="js/global.js"></script>
 </body>
