@@ -3,7 +3,7 @@
    ========================================================================== */
 
 #main {
-	width: 320pt;
+	width: 280px;
 	margin: 52px auto;
 }
 
@@ -13,7 +13,6 @@
 	padding: 8px 20px 12px;
 	font-size: 20px;
 	font-weight: bold;
-	line-height: 1;
 	color: black;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
 }
@@ -25,7 +24,8 @@
 }
 
 #projectTitle {
-	padding-bottom: 12px
+	margin: 0 35px 12px 14px;
+	width: 266px;
 }
 
 .task {
@@ -34,6 +34,7 @@
 }
 
 .task h3 {
+	width: 220px;
 	margin-bottom: 8px;
 }
 
@@ -41,16 +42,19 @@
 	position: absolute;
 	top: 12px;
 	right: 12px;
-	display: none;
+}
+
+.task input {
+	display: block;
+	width: 130px;
 }
 
 #lower-content {
-	padding-top: 10px;
+	padding-top: 8px;
 }
 
-#estimate {
-	display: none;
-	margin: 12px 0;
+#addTask {
+	margin-bottom: 18px;
 }
 
 .estimateTotal, .estimateTime {
@@ -61,8 +65,18 @@
 	margin-top: 12px;
 }
 
+select#time {
+	width: 140px;
+}
+
 #calculate {
 	margin: 10px 0 18px;
+}
+
+#estimate {
+	display: none;
+	margin: 12px 0;
+	width: 266px;
 }
 
 .squeeze {

@@ -11,12 +11,12 @@ function estimate(){
 
 	// Make an array to hold the difference in our estimates
 	var tasks = [];
-		
+
 	$('.task').each(function(){
 		var abp = parseInt($(this).find('.abp:input').val()) || 0;
 		var hp = parseInt($(this).find('.hp:input').val()) || 0;
-		var task =  hp - abp;		
-		
+		var task =  hp - abp;
+
 		// Check to see if the ABP is lower than HP
 		if(hp < abp ){
 			tasks.push('tooHigh');
@@ -28,9 +28,9 @@ function estimate(){
 			// Fill the tasks[] variable with the differences of each value
 			tasks.push(task);
 			$(this).removeClass('alert alert-block');
-		}		
+		}
 	});
-	
+
 	// Assign the total variable as zero
 	var total = 0;
 
@@ -46,9 +46,9 @@ function estimate(){
 
 
 	if ($.inArray('tooHigh', tasks) > -1){
-		$('#estimate').hide().html('<div class="alert alert-error">Make sure all ABP values are lower than HP values</div>').fadeIn();	
+		$('#estimate').hide().html('<div class="alert alert-error">Make sure all ABP values are lower than HP values</div>').fadeIn();
 	} else if (estimate === 'NaN'){
-		$('#estimate').hide().html('<div class="alert alert-error">Make sure to enter numbers for all fields</div>').fadeIn();
+		$('#estimate').hide().html('<div class="alert alert-error">Make sure to enter numbers for<br />all fields</div>').fadeIn();
 	} else {
 		$('#estimate').hide().html('<div class="alert alert-success"><div class="estimateTotal">'+estimate+'&nbsp;</div> <div class="time">'+time+'</div></div>').fadeIn();
 	};
@@ -93,7 +93,7 @@ function loadTasksFromCookie(){
 		var len = data.tasks.length;
 		for (var i=0; i < len; ++i){
 			// Add each task
-			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<div class="task task'+ taskClass++ +'"><h3 contenteditable="true">' + data.tasks[i].title + '</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" value="'+ data.tasks[i].abp + '"/></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" value="'+ data.tasks[i].hp + '"/></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 			$('#estimate').hide();
 		}
@@ -105,28 +105,29 @@ $(function() {
 	// If no cookie create 2 tasks
 	if($.cookie("estimatorData") === null){
 		for(i=0; i < 2; ++i){
-			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+			var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
 			$(newTask).hide().appendTo('#form').fadeIn();
 		}
 	// Else load cookie
 	} else {
 		loadTasksFromCookie();
 	};
-	
+
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
-		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </span><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probably: </span><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn"><i class="icon-remove-sign"></i></button></div></div>';
+		var newTask = '<div class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Agressive But Possible: </label><input type="number" step="0.5" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" step="0.5" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></div>';
 		$(newTask).hide().appendTo('#form').fadeIn();
 		$('#estimate').hide();
 		return false;
 	});
-	
+
 	// Remove Task Button
 	$('#form').on('click', '.removeTask .btn', function(){
 		// Check to see there at least 2 tasks
 		if ($('.task').length > 2){
 			$(this).parent().parent().remove();
 			saveTasksToCookie();
+			estimate();
 		} else {
 			$('#estimate').hide().html('<div class="alert alert-error">You must have at least 2 tasks</div>').fadeIn();
 		}
@@ -134,19 +135,37 @@ $(function() {
 	});
 
 	// Enter Key Blur
-	$(".task h3, #projectTitle").keypress(function(event){
+	$('.task h3, #projectTitle').keypress(function(event){
   		if (event.which == 13){
-     		$(this).blur();     		
+     		$(this).blur();
      		return false;
    		}
 	});
 
-	$('#form').on('mouseenter', '.task', function(){
-		$(this).find('.btn').css('display' , 'block')
+	// Clear Project Title when editing
+	$('#projectTitle').focus(function(){
+		if($(this).text() === 'Project Title'){
+			$(this).text('');
+		}
 	});
 
-	$('#form').on('mouseleave', '.task', function(){
-		$(this).find('.btn').css('display' , 'none')
+	$('#projectTitle').blur(function(){
+		if($(this).text() === ''){
+			$(this).text('Project Title');
+		}
+	});
+
+	// Clear Task Titles when editing
+	$('.task h3').focus(function(){
+		if($(this).text() === 'Task Title'){
+			$(this).text('');
+		}
+	});
+
+	$('.task h3').blur(function(){
+		if($(this).text() === ''){
+			$(this).text('Task Title');
+		}
 	});
 
 	// Update Time Value
@@ -154,12 +173,12 @@ $(function() {
 		var time = $('#time').val();
 		$('.time').hide().html(time).fadeIn();
 		saveTasksToCookie();
-	})
+	});
 
 	// Perform Calculation
 	$('#calculateBtn').click(function(){
 		estimate();
 		saveTasksToCookie();
 		return false;
-	});	
+	});
 });
