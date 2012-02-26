@@ -80,7 +80,7 @@
 	margin-bottom: 8px;
 }
 
-.removeTask .btn {
+.removeTask {
 	position: absolute;
 	top: 12px;
 	right: 12px;
