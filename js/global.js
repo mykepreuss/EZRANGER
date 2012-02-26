@@ -151,6 +151,7 @@ $(function() {
 	$('#projectTitle').focus(function(){
 		if($(this).text() === 'Project Title'){
 			$(this).text('');
+			$(this).focus();
 		}
 	});
 
@@ -164,6 +165,7 @@ $(function() {
 	$('.task h3').focus(function(){
 		if($(this).text() === 'Task Title'){
 			$(this).text('');
+			$(this).focus();
 		}
 	});
 
