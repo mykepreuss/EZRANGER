@@ -194,5 +194,6 @@ $(function() {
 
 var addToHomeConfig = {
 	expire: 10080,
-	startDelay: 500
+	startDelay: 500,
+	animationIn: 'fade'
 };
