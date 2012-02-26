@@ -189,5 +189,4 @@ $(function() {
 	});
 
 	$('.dropdown-toggle').dropdown()
-
 });
