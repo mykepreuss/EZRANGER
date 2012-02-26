@@ -2,16 +2,6 @@
 	@mykepreuss
 */
 
-$("input[type=text], textarea").mouseover(zoomDisable).mousedown(zoomEnable);
-function zoomDisable(){
-  $('head meta[name=viewport]').remove();
-  $('head').prepend('<meta name="viewport" content="user-scalable=0" />');
-}
-function zoomEnable(){
-  $('head meta[name=viewport]').remove();
-  $('head').prepend('<meta name="viewport" content="user-scalable=1" />');
-}
-
 function estimate(){
 	// Add up all the ABP's
 	var abp = 0;
