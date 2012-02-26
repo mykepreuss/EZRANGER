@@ -190,3 +190,7 @@ $(function() {
 
 	$('.dropdown-toggle').dropdown();
 });
+
+var addToHomeConfig = {
+	expire: 10080
+};
