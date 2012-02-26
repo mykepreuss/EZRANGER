@@ -193,5 +193,6 @@ $(function() {
 });
 
 var addToHomeConfig = {
-	expire: 10080
+	expire: 10080,
+	startDelay: 500
 };
