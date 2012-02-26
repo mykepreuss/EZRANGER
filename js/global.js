@@ -188,5 +188,5 @@ $(function() {
 		return false;
 	});
 
-	$('.dropdown-toggle').dropdown()
+	$('.dropdown-toggle').dropdown();
 });

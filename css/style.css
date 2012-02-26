@@ -1,6 +1,8 @@
 /* ==|== primary styles =====================================================
    Author: @mykepreuss
    ========================================================================== */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+
 .container {
 	width: 280px;
 }
@@ -91,6 +93,11 @@
 #projectTitle {
 	margin: 0 35px 12px 14px;
 	width: 266px;
+}
+
+article.task {
+	display: block !important; 
+	filter:  alpha(opacity=100) !important; 
 }
 
 .task {
