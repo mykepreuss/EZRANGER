@@ -5,6 +5,23 @@
 	width: 280px;
 }
 
+.task h3:focus, #projectTitle:focus{
+	border:1px solid rgba(82, 168, 236, 0.8);
+	-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(82, 168, 236, 0.6);
+	-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(82, 168, 236, 0.6);
+	box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(82, 168, 236, 0.6);
+	outline:0;
+	padding: 0 4px;
+}
+
+#projectTitle:focus{
+	width: 258px;
+}
+
+.task h3:focus {
+	width: 212px;
+}
+
 #main {
 	width: 280px;
 	margin: 24px auto;

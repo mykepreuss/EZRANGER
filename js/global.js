@@ -133,6 +133,8 @@ $(function() {
 			estimate();
 		} else {
 			$('#estimate').hide().html('<div class="alert alert-error">You must have at least 2 tasks</div>').fadeIn();
+			goToByScroll('estimate');
+
 		}
 		return false;
 	});
