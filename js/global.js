@@ -185,6 +185,7 @@ $(function() {
 		estimate();
 		saveTasksToCookie();
 		goToByScroll('estimate');
+		$('#about').children().removeClass('open');
 		return false;
 	});
 
