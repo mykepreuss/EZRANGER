@@ -13,6 +13,10 @@ CACHE:
 /img/touch-icon-ipad.png
 /img/touch-icon-iphone.png
 /img/touch-icon-iphone4.png
+/img/splash-screen-320x460.png
+/img/splash-screen-640x920.png
+/img/splash-screen-768x1004.png
+/img/splash-screen-1024x748.png
 index.html
 
 NETWORK:
