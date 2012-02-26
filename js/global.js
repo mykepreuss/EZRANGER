@@ -187,5 +187,4 @@ $(function() {
 	});
 
 	$('.dropdown-toggle').dropdown()
-
 });
