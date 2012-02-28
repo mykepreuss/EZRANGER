@@ -2,6 +2,16 @@
 	@mykepreuss
 */
 
+function saveValues(){
+	if (Modernizr.localstorage) {
+	  // window.localStorage is available!
+	} else {
+	  // no native support for HTML5 storage :(
+	  // maybe try dojox.storage or a third-party solution
+	}
+};
+
+
 function estimate(){
 	// Add up all the ABP's
 	var abp = 0;
@@ -54,7 +64,7 @@ function estimate(){
 	};
 };
 
-function saveTasksToCookie(){
+function saveTasksToMemory(){
 	var data = {};
 	data.projectTitle = $("#projectTitle").text();
 	data.time = $("#time").val();
@@ -69,14 +79,22 @@ function saveTasksToCookie(){
 		data.tasks.push(item);
 	});
 
-	// Now save list to cookie
-	$.cookie("estimatorData", JSON.stringify(data));
+	// Now save list to memory
+	if (Modernizr.localstorage) {
+		console.log("yes");
+		localStorage.setItem("estimatorData", JSON.stringify(data));	
+	} else {
+		$.cookie("estimatorData", JSON.stringify(data));
+	}
 };
 
-function loadTasksFromCookie(){
-	// Load from cookie
-	var data = JSON.parse($.cookie("estimatorData"))
-
+function loadTasksFromMemory(){
+	// Check for LocalStorage or Cookie
+	if (Modernizr.localstorage) {
+		var data = JSON.parse(localStorage.getItem('estimatorData'));	
+	} else {
+		var data = JSON.parse($.cookie("estimatorData"))
+	}
 
 	// Create tasks from data
 	if (data.projectTitle){
@@ -105,16 +123,28 @@ function goToByScroll(id){
 }
 
 $(function() {
-	// If no cookie create 2 tasks
-	if($.cookie("estimatorData") === null){
-		for(i=0; i < 2; ++i){
-			var newTask = '<article class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
-			$(newTask).hide().appendTo('#form').fadeIn();
-		}
-	// Else load cookie
+	// Check for LocalStorage or Cookie
+	if (Modernizr.localstorage) {
+		// If no cookie create 2 tasks
+		if(localStorage.getItem('estimatorData') === null){
+			for(i=0; i < 2; ++i){
+				var newTask = '<article class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
+				$(newTask).hide().appendTo('#form').fadeIn();
+			}
+		} else {
+			loadTasksFromMemory();
+		};
 	} else {
-		loadTasksFromCookie();
-	};
+		if($.cookie("estimatorData") === null){
+			for(i=0; i < 2; ++i){
+				var newTask = '<article class="task"><h3 contenteditable="true">Task Title</h3><p><label for="abp">Aggressive But Possible: </label><input type="number" name="abp" class="abp" /></p><p><label for="abp">Highly Probable: </label><input type="number" name="hp" class="hp" /></p><div class="removeTask"><button class="btn btn-mini"><i class="icon-remove-sign"></i></button></div></article>';
+				$(newTask).hide().appendTo('#form').fadeIn();
+			}
+		// Else load cookie
+		} else {
+			loadTasksFromMemory();
+		};
+	}
 
 	// Add More Tasks Button
 	$('#addTaskBtn').click(function(){
@@ -129,7 +159,7 @@ $(function() {
 		// Check to see there at least 2 tasks
 		if ($('.task').length > 2){
 			$(this).parent().parent().remove();
-			saveTasksToCookie();
+			saveTasksToMemory();
 			estimate();
 		} else {
 			$('#estimate').hide().html('<div class="alert alert-error">You must have at least 2 tasks</div>').fadeIn();
@@ -179,13 +209,13 @@ $(function() {
 	$('#time').change(function(){
 		var time = $('#time').val();
 		$('.time').hide().html(time).fadeIn();
-		saveTasksToCookie();
+		saveTasksToMemory();
 	});
 
 	// Perform Calculation
 	$('#calculateBtn').click(function(){
 		estimate();
-		saveTasksToCookie();
+		saveTasksToMemory();
 		goToByScroll('estimate');
 		$('#about').children().removeClass('open');
 		return false;
