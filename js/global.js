@@ -2,16 +2,6 @@
 	@mykepreuss
 */
 
-function saveValues(){
-	if (Modernizr.localstorage) {
-	  // window.localStorage is available!
-	} else {
-	  // no native support for HTML5 storage :(
-	  // maybe try dojox.storage or a third-party solution
-	}
-};
-
-
 function estimate(){
 	// Add up all the ABP's
 	var abp = 0;
