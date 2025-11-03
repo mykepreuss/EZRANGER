@@ -1,0 +1,36 @@
+{
+  "name": "ezranger",
+  "version": "1.0.0",
+  "description": "Range-estimation playground rebuilt with React and Tailwind.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "echo \"No lint step configured\"",
+    "test": "vitest run --config vitest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mykepreuss/EZRANGER.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mykepreuss/EZRANGER/issues"
+  },
+  "homepage": "https://github.com/mykepreuss/EZRANGER#readme",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.13",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
+  }
+}

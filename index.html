@@ -1,118 +1,17 @@
 <!doctype html>
-<html lang="en" manifest="/estimator.appcache">
-<head>
-	<meta charset="utf-8">
-	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-	<title>EZRANGER</title>
-	<meta name="description" content="EZRANGER is an app that helps you create better estimates using a formula that takes into account any interruptions you may encounter during the course of a project.">
-	<meta name="author" content="@mykepreuss">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/add2home.css">
-	<script src="js/libs/modernizr-2.5.2.min.js"></script>
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(
-hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<link rel="apple-touch-icon-precomposed" href="/img/touch-icon-iphone.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/touch-icon-ipad.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/touch-icon-iphone4.png" />
-	<link rel="apple-touch-startup-image" href="/img/splash-screen-320x460.png" media="screen and (max-device-width: 320px)" />
-	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="/img/splash-screen-640x920.png" />
-	<link rel="apple-touch-startup-image" sizes="1024x748" href="/img/splash-screen-1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
-	<link rel="apple-touch-startup-image" sizes="768x1004" href="/img/splash-screen-768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"/>
-</head>
-
-<body>
-	<header>
-		<nav class="navbar">
-			<div class="navbar-inner">
-				<div class="container">
-					<h1 class="brand" href="#">EZRANGER</h1>
-					<div id="header-twitter">
-						<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out @ezrangerapp to help you with your project estimates." data-hashtags="ezranger">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<div id="slider-container">
-			<div id="about">
-				<div class="btn-group">
-					<a href="#" class="btn dropdown-toggle" data-toggle="dropdown">ABOUT <span class="caret"></span></a>
-					<div class="dropdown-menu">
-						<h2><strong>EZRANGER</strong> is an app that helps you create better estimates using a formula that takes into account any interruptions you may encounter during the course of a project.</h2>
-						<p><strong>INSTRUCTIONS</strong></p>
-						<ol>
-							<li>Enter your Project Title.</li>
-							<li>Break your Project into Tasks.</li>
-							<li>Name each Task.</li>
-							<li>Enter an <em>Aggressive But Possible</em> Estimate. This is how fast you think you can get each task done without any delays, interruptions or issues.</li>
-							<li>Enter a <em>Highly Probably</em> Estimate. This should be a number you're 100% comfortable with, taking into consideration any delays or complexities.</li>
-							<li>Choose if your estimates are in <em>Days</em> or <em>Hours</em></li>
-							<li>Press <em>Calculate</em></li>
-						</ol>
-						<p><strong>EZRANGER</strong> is a project by <a href="http://waytoogood.ca">Myke Preuss</a> based of an formula seen on <a href="http://spin.atomicobject.com/2009/01/14/making-better-estimates-range-estimates/">Atomic Spin</a>. Special thanks to <a href="https://twitter.com/#!/wkral">William Kral</a> and <a href="http://pinkunderwear.ca/">Raman Gill</a>.</p>
-						<p><strong>EZRANGER</strong> is on <a href="https://github.com/mykepreuss/EZRANGER">github</a> and uses <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-    </header>
-
-	<div id="main" role="main">
-		<header>
-			<h2 id="projectTitle" contenteditable="true">Project Title</h2>
-		</header>
-
-		<div id="form">
-			<!-- Loaded from the JS -->
-		</div>
-		<footer id="lower-content" class="squeeze">
-			<button id="addTaskBtn" class="btn btn-small"><i class="icon-plus-sign"></i> Add Task</button>
-
-			<div class="control-group">
-				<label class="control-label" for="time">Choose Hours or Days</label>
-				<div class="controls">
-					<select id="time" name="time">
-					<option value="Hours">Hours</option>
-					<option value="Days">Days</option>
-					</select>
-				</div>
-			</div>
-
-			<button id="calculateBtn" class="btn btn-large btn-primary">Calculate</button>
-
-			<div id="estimate"></div>
-		</footer>
-	</div>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-	<script src="js/libs/bootstrap.min.js"></script>
-	<script src="js/libs/jquery.cookie.js"></script>
-	<!--[if IE 7]><script src="js/libs/json2.js"></script><![endif]-->
-	<script src="js/global.js"></script>
-	<script src="js/libs/add2home.js"></script>
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-1484853-29']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
-	<script type="text/javascript">
-		var sc_project=7703225;
-		var sc_invisible=1;
-		var sc_security="739789de";
-	</script>
-	<script type="text/javascript"
-		src="http://www.statcounter.com/counter/counter.js">
-	</script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EZRANGER</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <meta
+      name="description"
+      content="EZRANGER helps you build resilient project estimates using a modern take on the Atomic Object buffer formula."
+    />
+  </head>
+  <body class="bg-slate-950 text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

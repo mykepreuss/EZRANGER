@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #05080f;
+  background-image: radial-gradient(circle at 10% 20%, rgba(0, 194, 184, 0.2), transparent 45%),
+    radial-gradient(circle at 90% 0%, rgba(255, 183, 77, 0.18), transparent 35%), linear-gradient(180deg, #05080f 0%, #020204 100%);
+  color: #f5f8ff;
+  @apply antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+  background: transparent;
+}
+
+.pattern-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 183, 77, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 194, 184, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.5;
+}
+
+.card {
+  @apply rounded-3xl border border-white/5 bg-slate-900/70 p-6 shadow-[0_15px_40px_rgba(0,0,0,0.45)] backdrop-blur;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-base text-white placeholder:text-slate-400 focus:border-ink-500 focus:ring-2 focus:ring-ink-500/40;
+}
+
+.input-error {
+  @apply border-red-500/80 focus:border-red-400 focus:ring-red-400/40;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
+}
+
+.btn-primary {
+  @apply btn bg-ink-500 text-slate-950 font-semibold shadow-[0_10px_25px_rgba(0,194,184,0.35)] transition duration-200;
+}
+
+.btn-primary:hover {
+  @apply bg-ink-200 text-slate-900;
+}
+
+.btn-ghost {
+  @apply btn border border-white/10 bg-transparent text-slate-100 hover:bg-white/5;
+}
+
+.pill {
+  @apply rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wide text-mango-100 bg-white/5 border border-white/10;
+}
+
+.gradient-step {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-500/40 bg-ink-500/20 text-sm font-semibold text-ink-200 shadow-[0_6px_16px_rgba(0,194,184,0.35)];
+}
+
+.instruction-list {
+  @apply space-y-3 rounded-2xl border border-white/5 bg-slate-900/60 p-4;
+}
+
+.instruction-list .step-text {
+  @apply leading-relaxed text-slate-100;
+}
+
+.task-card {
+  border-radius: 28px;
+  background-image: linear-gradient(135deg, rgba(0, 194, 184, 0.08), rgba(255, 183, 77, 0.08));
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -40% -30%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(0, 194, 184, 0.4), transparent 55%);
+  filter: blur(60px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
